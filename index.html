@@ -5,40 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Tu Semana">
-<meta name="theme-color" content="#0E1117">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#EEF1F6">
 <title>Tu Semana</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0E1117;
-    --surface:#171C26;
-    --surface2:#1F2530;
-    --border:#2A313D;
-    --text:#E7E9ED;
-    --muted:#8A92A3;
-    --ejercicio:#FF7A5C;
-    --estudio:#3FB6E8;
-    --habito:#34D399;
-    --mom1:#34D399;
-    --mom2:#3FB6E8;
+    --bg:#EEF1F6;
+    --surface:#FFFFFF;
+    --surface2:#E7EBF1;
+    --border:#D8DEE8;
+    --text:#1B2230;
+    --muted:#6E7787;
+    --ejercicio:#E85D42;
+    --estudio:#2589CB;
+    --habito:#10A074;
+    --mom1:#10A074;
+    --mom2:#2589CB;
+    --malo:#E0484D;
+    --regular:#E0A82E;
+    --bueno:#10A074;
+    --perfecto:#C8901A;
     --display:'Space Grotesk',sans-serif;
     --body:'Inter',sans-serif;
     --mono:'Space Mono',monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased}
-  body{max-width:680px;margin:0 auto;padding:20px 16px 48px;min-height:100vh}
+  body{max-width:680px;margin:0 auto;padding:18px 16px 48px;min-height:100vh}
 
-  .top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:22px}
-  .title{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:-0.02em;line-height:1}
+  /* APP BAR + TABS */
+  .brand{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-0.02em;margin-bottom:14px}
+  .tabs{display:flex;gap:4px;background:var(--surface2);padding:4px;border-radius:13px;margin-bottom:20px}
+  .tab{flex:1;border:none;background:none;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:10px;border-radius:10px;cursor:pointer;transition:all .15s}
+  .tab[aria-selected="true"]{background:var(--surface);color:var(--text);box-shadow:0 1px 4px rgba(20,30,50,.10)}
+
+  /* HEADER ROW */
+  .top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:20px}
+  .title{font-family:var(--display);font-weight:700;font-size:27px;letter-spacing:-0.02em;line-height:1}
   .subtitle{color:var(--muted);font-size:13px;margin-top:6px}
   .streak{text-align:right;flex-shrink:0}
-  .streak-num{font-family:var(--mono);font-weight:700;font-size:26px;line-height:1;background:linear-gradient(120deg,var(--mom1),var(--mom2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .streak-lbl{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
+  .streak-num{font-family:var(--mono);font-weight:700;font-size:25px;line-height:1;background:linear-gradient(120deg,var(--mom1),var(--mom2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .streak-lbl{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:0.07em;margin-top:4px}
 
-  .eq{display:flex;gap:6px;align-items:flex-end;height:128px;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:16px;margin-bottom:18px}
+  /* EQUALIZER */
+  .eq{display:flex;gap:6px;align-items:flex-end;height:124px;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:16px;margin-bottom:18px}
   .eq-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;height:100%;background:none;border:none;padding:0;font-family:inherit}
   .eq-bar{position:relative;width:100%;flex:1;background:var(--surface2);border-radius:7px;overflow:hidden;border:1.5px solid transparent;transition:border-color .2s}
   .eq-col[aria-selected="true"] .eq-bar{border-color:var(--mom2)}
@@ -55,7 +68,7 @@
 
   ul{list-style:none}
   .task{display:flex;align-items:center;gap:13px;padding:13px 14px;background:var(--surface);border:1px solid var(--border);border-radius:13px;margin-bottom:9px}
-  .task.done{opacity:.55}
+  .task.done{opacity:.62}
   .check{flex-shrink:0;width:24px;height:24px;border-radius:8px;border:2px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s,transform .1s}
   .check:active{transform:scale(.88)}
   .task.done .check{border-color:var(--c);background:var(--c)}
@@ -64,11 +77,11 @@
   .task-body{flex:1;min-width:0}
   .task-text{font-size:15px;line-height:1.3}
   .task.done .task-text{text-decoration:line-through;text-decoration-color:var(--muted)}
-  .chip{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;padding:2px 7px;border-radius:5px;margin-top:5px;color:var(--c);background:color-mix(in srgb,var(--c) 16%,transparent)}
+  .chip{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;padding:2px 7px;border-radius:5px;margin-top:5px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,white)}
   .del{flex-shrink:0;background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:4px;opacity:.6;transition:opacity .15s,color .15s}
   .del:hover{opacity:1;color:var(--ejercicio)}
 
-  .empty{text-align:center;color:var(--muted);font-size:14px;padding:28px 0}
+  .empty{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;line-height:1.5}
 
   .add{margin-top:18px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px}
   .add input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:15px;padding:11px 12px;margin-bottom:11px}
@@ -77,12 +90,40 @@
   .add-row{display:flex;gap:8px}
   .cats{display:flex;gap:6px;flex:1}
   .cat-btn{flex:1;background:var(--surface2);border:1.5px solid var(--border);color:var(--muted);font-family:inherit;font-size:12px;font-weight:600;padding:9px 4px;border-radius:9px;cursor:pointer;transition:all .15s}
-  .cat-btn[aria-pressed="true"]{color:var(--c);border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent)}
-  .add-go{flex-shrink:0;width:46px;background:linear-gradient(120deg,var(--mom1),var(--mom2));border:none;border-radius:9px;color:#0E1117;font-size:24px;font-weight:700;cursor:pointer;line-height:1}
+  .cat-btn[aria-pressed="true"]{color:var(--c);border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,white)}
+  .add-go{flex-shrink:0;width:46px;background:linear-gradient(120deg,var(--mom1),var(--mom2));border:none;border-radius:9px;color:#fff;font-size:24px;font-weight:700;cursor:pointer;line-height:1}
   .add-go:active{transform:scale(.94)}
 
-  .reset{display:block;margin:22px auto 0;background:none;border:none;color:var(--muted);font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-  .reset:hover{color:var(--ejercicio)}
+  .close-wk{display:block;width:100%;margin-top:18px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:inherit;font-size:14px;font-weight:600;padding:13px;border-radius:12px;cursor:pointer;transition:all .15s}
+  .close-wk:hover{border-color:var(--mom2);color:var(--mom2)}
+
+  /* HISTORY */
+  .streak-card{display:flex;align-items:center;gap:16px;background:linear-gradient(120deg,color-mix(in srgb,var(--bueno) 13%,white),color-mix(in srgb,var(--estudio) 13%,white));border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:18px}
+  .streak-big{font-family:var(--mono);font-weight:700;font-size:38px;line-height:1;color:var(--bueno)}
+  .streak-card .sc-txt{font-size:14px;line-height:1.4}
+  .streak-card .sc-txt b{font-weight:600}
+  .streak-card .sc-sub{color:var(--muted);font-size:12px;margin-top:3px}
+
+  .sec-h{font-family:var(--display);font-weight:500;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin:0 2px 11px}
+
+  .chart{display:flex;gap:9px;align-items:flex-end;height:170px;padding:14px 14px 10px;background:var(--surface);border:1px solid var(--border);border-radius:16px;margin-bottom:24px;overflow-x:auto}
+  .chart-col{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+  .chart-val{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--muted)}
+  .chart-barwrap{flex:1;width:28px;display:flex;align-items:flex-end}
+  .chart-bar{width:100%;border-radius:6px 6px 0 0;min-height:4px;transition:height .5s cubic-bezier(.2,.7,.3,1)}
+  .chart-bar.perfecto{background:linear-gradient(180deg,#EBC65C,#C8901A)}
+  .chart-lbl{font-size:10px;color:var(--muted);white-space:nowrap}
+
+  .wk{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--c);border-radius:12px;padding:13px 15px;margin-bottom:9px}
+  .wk-main{flex:1;min-width:0}
+  .wk-date{font-size:15px;font-weight:600}
+  .wk-sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .wk-right{text-align:right;flex-shrink:0}
+  .wk-pct{font-family:var(--mono);font-weight:700;font-size:21px;color:var(--c);line-height:1}
+  .wk-badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:3px 8px;border-radius:6px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,white);margin-top:5px}
+
+  .clear-h{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .clear-h:hover{color:var(--malo)}
 
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -106,6 +147,7 @@ const CATS = {
   habito:   {label:'Hábito',    color:'var(--habito)'},
 };
 const STORE_KEY = 'weekly-routine-v1';
+const HIST_KEY  = 'weekly-history-v1';
 
 function defaultData(){
   const t = (cat,text)=>({id:uid(),cat,text,done:false});
@@ -122,7 +164,10 @@ function defaultData(){
 function uid(){return Math.random().toString(36).slice(2,9)}
 
 let data = null;
+let history = [];
 let selected = todayKey();
+let view = 'semana';
+let pendingCat = 'ejercicio';
 
 function todayKey(){
   const js = new Date().getDay();
@@ -133,14 +178,21 @@ function todayKey(){
 function load(){
   try{
     const r = localStorage.getItem(STORE_KEY);
-    if(r){ data = JSON.parse(r); }
-    else { data = defaultData(); save(); }
+    if(r){ data = JSON.parse(r); } else { data = defaultData(); saveData(); }
   }catch(e){ data = defaultData(); }
+  try{
+    const h = localStorage.getItem(HIST_KEY);
+    history = h ? JSON.parse(h) : [];
+  }catch(e){ history = []; }
   render();
 }
-function save(){
+function saveData(){
   try{ localStorage.setItem(STORE_KEY, JSON.stringify(data)); }
   catch(e){ console.error('No se pudo guardar', e); }
+}
+function saveHistory(){
+  try{ localStorage.setItem(HIST_KEY, JSON.stringify(history)); }
+  catch(e){ console.error('No se pudo guardar historial', e); }
 }
 
 function dayPct(key){
@@ -149,18 +201,45 @@ function dayPct(key){
   return Math.round(100*list.filter(t=>t.done).length/list.length);
 }
 function completeDays(){ return DAYS.filter(d=>dayPct(d.key)===100 && (data[d.key]||[]).length).length; }
+function weekPct(){
+  let done=0,total=0;
+  DAYS.forEach(d=>(data[d.key]||[]).forEach(t=>{total++;if(t.done)done++;}));
+  return total?Math.round(100*done/total):0;
+}
+function tier(pct){
+  if(pct>=100) return {key:'perfecto',label:'Perfecto',color:'var(--perfecto)'};
+  if(pct>=80)  return {key:'bueno',   label:'Bueno',   color:'var(--bueno)'};
+  if(pct>=60)  return {key:'regular', label:'Regular', color:'var(--regular)'};
+  return            {key:'malo',    label:'Malo',    color:'var(--malo)'};
+}
+function weekStreak(){
+  let s=0;
+  for(let i=history.length-1;i>=0;i--){ if(history[i].pct>=80) s++; else break; }
+  return s;
+}
+function fmtDate(ts){ return new Date(ts).toLocaleDateString('es-MX',{day:'numeric',month:'short'}); }
 
 function render(){
   const app = document.getElementById('app');
+  app.innerHTML = `
+    <div class="brand">Tu rutina</div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="${view==='semana'}" onclick="setView('semana')">Semana</button>
+      <button class="tab" role="tab" aria-selected="${view==='historial'}" onclick="setView('historial')">Historial</button>
+    </div>
+    ${view==='semana' ? weekView() : histView()}
+  `;
+}
+
+function weekView(){
   const done = completeDays();
   const list = data[selected]||[];
   const pct = dayPct(selected);
-
-  app.innerHTML = `
+  return `
     <div class="top">
       <div>
         <div class="title">Tu semana</div>
-        <div class="subtitle">Marca lo que vas cumpliendo. Se guarda solo.</div>
+        <div class="subtitle">Marca lo que cumples. Se guarda solo.</div>
       </div>
       <div class="streak">
         <div class="streak-num">${done}<span style="font-size:15px;color:var(--muted);-webkit-text-fill-color:var(--muted)">/7</span></div>
@@ -188,7 +267,7 @@ function render(){
       ${list.length ? list.map(t=>{
         const c = CATS[t.cat].color;
         return `<li class="task ${t.done?'done':''}" style="--c:${c}">
-          <button class="check" onclick="toggle('${t.id}')" aria-label="marcar"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1117" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <button class="check" onclick="toggle('${t.id}')" aria-label="marcar"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
           <div class="task-body">
             <div class="task-text">${esc(t.text)}</div>
             <span class="chip">${CATS[t.cat].label}</span>
@@ -202,43 +281,104 @@ function render(){
       <input id="newtext" placeholder="Nueva tarea para ${selected}…" onkeydown="if(event.key==='Enter')addTask()">
       <div class="add-row">
         <div class="cats">
-          ${Object.entries(CATS).map(([k,v],i)=>`<button class="cat-btn" style="--c:${v.color}" aria-pressed="${i===0}" onclick="pickCat(this,'${k}')">${v.label}</button>`).join('')}
+          ${Object.entries(CATS).map(([k,v])=>`<button class="cat-btn" style="--c:${v.color}" aria-pressed="${k===pendingCat}" onclick="pickCat('${k}')">${v.label}</button>`).join('')}
         </div>
         <button class="add-go" onclick="addTask()">+</button>
       </div>
     </div>
 
-    <button class="reset" onclick="resetWeek()">Reiniciar checks de la semana</button>
+    <button class="close-wk" onclick="closeWeek()">Cerrar semana y guardar en historial</button>
   `;
 }
 
-let pendingCat = 'ejercicio';
-function pickCat(btn,cat){
-  pendingCat = cat;
-  document.querySelectorAll('.cat-btn').forEach(b=>b.setAttribute('aria-pressed','false'));
-  btn.setAttribute('aria-pressed','true');
+function histView(){
+  if(!history.length){
+    return `<div class="empty" style="padding:50px 24px">Aún no hay semanas registradas.<br><br>Cuando termines una semana, usa <b>“Cerrar semana”</b> en la pestaña Semana y aquí se irá guardando tu historial con colores, gráfica y racha.</div>`;
+  }
+  const streak = weekStreak();
+  const recent = history.slice(-16); // gráfica: últimas 16
+  return `
+    <div class="streak-card">
+      <div class="streak-big">${streak}</div>
+      <div class="sc-txt">
+        <b>${streak===1?'semana':'semanas'} seguidas cumpliendo</b>
+        <div class="sc-sub">Cuenta semanas en verde o dorado (80% o más)</div>
+      </div>
+    </div>
+
+    <div class="sec-h">Progreso</div>
+    <div class="chart">
+      ${recent.map(w=>{
+        const t = tier(w.pct);
+        const style = t.key==='perfecto' ? `style="height:${w.pct}%"` : `style="background:${t.color};height:${w.pct}%"`;
+        return `<div class="chart-col">
+          <div class="chart-val">${w.pct}%</div>
+          <div class="chart-barwrap"><div class="chart-bar ${t.key}" ${style}></div></div>
+          <div class="chart-lbl">${fmtDate(w.date)}</div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div class="sec-h">Semanas</div>
+    ${history.slice().reverse().map(w=>{
+      const t = tier(w.pct);
+      return `<div class="wk" style="--c:${t.color}">
+        <div class="wk-main">
+          <div class="wk-date">Semana del ${fmtDate(w.date)}</div>
+          <div class="wk-sub">${w.days100}/7 días perfectos</div>
+        </div>
+        <div class="wk-right">
+          <div class="wk-pct">${w.pct}%</div>
+          <span class="wk-badge">${t.key==='perfecto'?'✨ ':''}${t.label}</span>
+        </div>
+      </div>`;
+    }).join('')}
+
+    <button class="clear-h" onclick="clearHistory()">Borrar historial</button>
+  `;
 }
-function selectDay(key){ selected = key; pendingCat='ejercicio'; render(); }
+
+function setHeights(){
+  if(view!=='historial') return;
+  const recent = history.slice(-16);
+  document.querySelectorAll('.chart-bar').forEach((bar,i)=>{
+    requestAnimationFrame(()=>{ bar.style.height = (recent[i]?recent[i].pct:0)+'%'; });
+  });
+}
+
+function setView(v){ view=v; render(); setHeights(); }
+function pickCat(cat){ pendingCat=cat; render(); }
+function selectDay(key){ selected=key; pendingCat='ejercicio'; render(); }
 
 function toggle(id){
-  const t = (data[selected]||[]).find(x=>x.id===id);
-  if(t){ t.done=!t.done; save(); render(); }
+  const t=(data[selected]||[]).find(x=>x.id===id);
+  if(t){ t.done=!t.done; saveData(); render(); }
 }
 function del(id){
-  data[selected] = (data[selected]||[]).filter(x=>x.id!==id);
-  save(); render();
+  data[selected]=(data[selected]||[]).filter(x=>x.id!==id);
+  saveData(); render();
 }
 function addTask(){
-  const inp = document.getElementById('newtext');
-  const text = inp.value.trim();
+  const inp=document.getElementById('newtext');
+  const text=inp.value.trim();
   if(!text) return;
-  data[selected] = data[selected]||[];
+  data[selected]=data[selected]||[];
   data[selected].push({id:uid(),cat:pendingCat,text,done:false});
-  save(); render();
+  saveData(); render();
 }
-function resetWeek(){
+function closeWeek(){
+  const pct=weekPct(), days=completeDays();
+  if(!confirm('Se guardará esta semana en tu historial ('+pct+'%) y los checks se reinician para empezar de nuevo.\n\n¿Continuar?')) return;
+  history.push({date:Date.now(), pct, days100:days});
+  saveHistory();
   DAYS.forEach(d=>(data[d.key]||[]).forEach(t=>t.done=false));
-  save(); render();
+  saveData();
+  view='historial';
+  render(); setHeights();
+}
+function clearHistory(){
+  if(!confirm('¿Borrar todo tu historial? Esto no se puede deshacer.')) return;
+  history=[]; saveHistory(); render();
 }
 function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 
