@@ -146,19 +146,19 @@ const CATS = {
   estudio:  {label:'Estudio',   color:'var(--estudio)'},
   habito:   {label:'Hábito',    color:'var(--habito)'},
 };
-const STORE_KEY = 'weekly-routine-v1';
+const STORE_KEY = 'weekly-routine-v9';
 const HIST_KEY  = 'weekly-history-v1';
 
 function defaultData(){
   const t = (cat,text)=>({id:uid(),cat,text,done:false});
   return {
-    lunes:[t('habito','Tomar 2L de agua'),t('ejercicio','Gym — tren superior 💪'),t('estudio','Bloque de estudio enfocado 1h'),t('habito','Dormir 7–8 horas')],
-    martes:[t('habito','Tomar 2L de agua'),t('ejercicio','Cardio / caminar 30 min'),t('estudio','Repasar apuntes 45 min'),t('habito','Leer 15 min')],
-    miercoles:[t('habito','Tomar 2L de agua'),t('ejercicio','Gym — tren inferior 🦵'),t('estudio','Avanzar tarea o proyecto 1h'),t('habito','Dormir 7–8 horas')],
-    jueves:[t('habito','Tomar 2L de agua'),t('ejercicio','Movilidad / estiramiento 20 min'),t('estudio','Bloque de estudio enfocado 1h'),t('habito','Sin pantallas 1h antes de dormir')],
-    viernes:[t('habito','Tomar 2L de agua'),t('ejercicio','Gym — full body 💪'),t('estudio','Cerrar pendientes de la semana'),t('habito','Planear el finde')],
-    sabado:[t('habito','Tomar 2L de agua'),t('ejercicio','Deporte / actividad libre ⚽'),t('estudio','Repaso ligero 30 min'),t('habito','Tiempo para ti 🎮🎶')],
-    domingo:[t('habito','Descanso activo / caminar'),t('estudio','Organizar la semana siguiente'),t('habito','Dormir temprano'),t('habito','Preparar mochila y ropa')],
+    lunes:[t('ejercicio','Partido de fútbol ⚽'),t('ejercicio','Gym: pecho y tríceps'),t('ejercicio','Abdomen 10-12 min'),t('habito','Tomar 3L de agua')],
+    martes:[t('ejercicio','Gym: pierna completa'),t('ejercicio','Abdomen 10-12 min'),t('habito','Tomar 3L de agua')],
+    miercoles:[t('ejercicio','Gym: brazo completo (bíceps y tríceps)'),t('ejercicio','Cardio Zona 2: 15-20 min suave'),t('habito','Tomar 3L de agua')],
+    jueves:[t('ejercicio','Gym: espalda y hombro'),t('ejercicio','Cardio suave 10-15 min'),t('ejercicio','Abdomen 10-12 min'),t('habito','Tomar 3L de agua')],
+    viernes:[t('ejercicio','Sprints/HIIT: calienta 8-10 min, 6-8 rondas (25s fuerte / 75s caminar), enfría'),t('habito','Tomar 3L de agua')],
+    sabado:[t('ejercicio','Cardio largo suave 40-50 min (trote, bici o fut ⚽)'),t('ejercicio','Abdomen 10-12 min'),t('habito','Tomar 3L de agua')],
+    domingo:[t('habito','Descanso total (o caminata muy ligera)'),t('habito','Tomar 3L de agua')],
   };
 }
 function uid(){return Math.random().toString(36).slice(2,9)}
