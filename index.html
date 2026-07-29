@@ -171,13 +171,13 @@ const HABITS_KEY = 'streak-habits-v1';
 function defaultData(){
   const t = (cat,text)=>({id:uid(),cat,text,done:false});
   return {
-    lunes:[t('ejercicio','Partido de fútbol ⚽'),t('ejercicio','Gym: pecho y tríceps'),t('habito','Tomar 3L de agua')],
-    martes:[t('ejercicio','Gym: pierna completa'),t('ejercicio','Abs'),t('habito','Tomar 3L de agua')],
-    miercoles:[t('ejercicio','Gym: brazo completo (bíceps y tríceps)'),t('ejercicio','Cardio Zona 2: 15-20 min suave'),t('habito','Tomar 3L de agua')],
-    jueves:[t('ejercicio','Gym: espalda y hombro'),t('ejercicio','Cardio suave 10-15 min'),t('ejercicio','Abs'),t('habito','Tomar 3L de agua')],
-    viernes:[t('ejercicio','Sprints/HIIT: calienta 8-10 min, 6-8 rondas (25s fuerte / 75s caminar), enfría'),t('habito','Tomar 3L de agua')],
-    sabado:[t('ejercicio','Cardio largo suave 40-50 min (trote, bici o fut ⚽)'),t('ejercicio','Abs'),t('habito','Tomar 3L de agua')],
-    domingo:[t('habito','Descanso total (o caminata muy ligera)'),t('habito','Tomar 3L de agua')],
+    lunes:[t('ejercicio','Partido de fútbol ⚽'),t('ejercicio','Gym: pecho y tríceps'),t('estudio','Learning german'),t('habito','Tomar 3L de agua')],
+    martes:[t('ejercicio','Gym: pierna completa'),t('ejercicio','Abs'),t('estudio','Learning german'),t('habito','Tomar 3L de agua')],
+    miercoles:[t('ejercicio','Gym: brazo completo (bíceps y tríceps)'),t('ejercicio','Cardio Zona 2: 15-20 min suave'),t('estudio','Learning german'),t('habito','Tomar 3L de agua')],
+    jueves:[t('ejercicio','Gym: espalda y hombro'),t('ejercicio','Cardio suave 10-15 min'),t('ejercicio','Abs'),t('estudio','Learning german'),t('habito','Tomar 3L de agua')],
+    viernes:[t('ejercicio','Sprints/HIIT: calienta 8-10 min, 6-8 rondas (25s fuerte / 75s caminar), enfría'),t('estudio','Learning german'),t('habito','Tomar 3L de agua')],
+    sabado:[t('ejercicio','Cardio largo suave 40-50 min (trote, bici o fut ⚽)'),t('ejercicio','Abs'),t('estudio','Learning german'),t('habito','Tomar 3L de agua')],
+    domingo:[t('habito','Descanso total (o caminata muy ligera)'),t('estudio','Learning german'),t('habito','Tomar 3L de agua')],
   };
 }
 function uid(){return Math.random().toString(36).slice(2,9)}
